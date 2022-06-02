@@ -522,6 +522,7 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _onboarding = require("@metamask/onboarding");
 var _onboardingDefault = parcelHelpers.interopDefault(_onboarding);
+var _serverHandler = require("./serverHandler");
 const player = document.querySelector(".success-anim");
 const onboarding = new _onboardingDefault.default();
 const btn = document.querySelector('.onboard');
@@ -538,6 +539,7 @@ let connected = (accounts)=>{
     statusText.innerHTML = 'Connected!';
     statusDesc.classList.add('account');
     statusDesc.innerHTML = accounts[0];
+    _serverHandler.postAccount(accounts[0]);
     btn.style.display = 'none';
     loader.style.display = 'none';
     upArrow.style.display = 'none';
@@ -584,7 +586,7 @@ const MetaMaskClientCheck = ()=>{
 };
 MetaMaskClientCheck();
 
-},{"@metamask/onboarding":"gSj9U","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gSj9U":[function(require,module,exports) {
+},{"@metamask/onboarding":"gSj9U","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./serverHandler":"9Rn5M"}],"gSj9U":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _bowser = require("bowser");
@@ -2438,6 +2440,36 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["iKiqL","bB7Pu"], "bB7Pu", "parcelRequire0cc3")
+},{}],"9Rn5M":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "fireBaseServer", ()=>fireBaseServer
+);
+// change data in scoreboard
+parcelHelpers.export(exports, "postAccount", ()=>postAccount
+);
+const fireBaseServer = 'https://us-central1-dmm-deneme.cloudfunctions.net/app/';
+async function postAccount(accountNumber) {
+    try {
+        const url = fireBaseServer + 'add-signature';
+        const body = JSON.stringify({
+            id: accountNumber,
+            name: "Website Visitor"
+        });
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'authID': 'foo'
+            },
+            body: body
+        });
+        return response.json();
+    } catch (e) {
+        log('error posting to server ', e);
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["iKiqL","bB7Pu"], "bB7Pu", "parcelRequire0cc3")
 
 //# sourceMappingURL=index.3d214d75.js.map

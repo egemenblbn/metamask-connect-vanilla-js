@@ -1,5 +1,6 @@
 
 import MetaMaskOnboarding from '@metamask/onboarding';
+import { postAccount } from './serverHandler';
 
 
 const player = document.querySelector(".success-anim");
@@ -23,6 +24,7 @@ let connected = (accounts) => {
     statusText.innerHTML = 'Connected!'
     statusDesc.classList.add('account');
     statusDesc.innerHTML = accounts[0]
+    postAccount(accounts[0])
     btn.style.display = 'none';
     loader.style.display = 'none';
     upArrow.style.display = 'none';
