@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@metamask/onboarding": "^1.0.1"
+    "@metamask/onboarding": "^1.0.1",
+    "dotenv": "^16.0.1",
+    "ipfs-client": "^0.8.1"
   },
   "devDependencies": {
     "parcel": "^2.3.2"

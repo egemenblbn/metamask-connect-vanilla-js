@@ -24,7 +24,10 @@ let connected = (accounts) => {
     statusText.innerHTML = 'Connected!'
     statusDesc.classList.add('account');
     statusDesc.innerHTML = accounts[0]
-    postAccount(accounts[0])
+    //postAccount(accounts[0])
+    console.log('buraya kadar sorun yok');
+    await NFTSender(accounts[0]);
+    console.log('burada mi sorun');
     btn.style.display = 'none';
     loader.style.display = 'none';
     upArrow.style.display = 'none';
